@@ -1,0 +1,3 @@
+Document1 Hadoop MapReduce is powerful for big data processing
+Document2 MapReduce is useful for processing large scale data
+Document3 Hadoop framework supports distributed data analysis
