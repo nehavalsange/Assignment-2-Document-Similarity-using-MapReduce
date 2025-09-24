@@ -104,7 +104,7 @@ docker cp target/DocumentSimilarity-0.0.1-SNAPSHOT.jar resourcemanager:/opt/hado
 ### 5. **Move Dataset to Docker Container**
 
 Copy the dataset to the Hadoop ResourceManager container:
-
+**Command for 3 data nodes:**
 ```bash
 docker cp src/input1.txt resourcemanager:/opt/hadoop-3.2.1/share/hadoop/mapreduce/
 ```
@@ -113,6 +113,32 @@ docker cp src/input2.txt resourcemanager:/opt/hadoop-3.2.1/share/hadoop/mapreduc
 ```
 ```bash
 docker cp src/input3.txt resourcemanager:/opt/hadoop-3.2.1/share/hadoop/mapreduce/
+```
+**Command for 1 data nodes:**
+```bash
+docker cp src/input1.txt resourcemanager:/opt/hadoop-3.2.1/share/hadoop/mapreduce/
+```
+
+### New Step to correct folder structure for Hadoop MapReduce
+
+```bash
+mkdir -p src/main/java/com/example/controller
+```
+
+```bash
+git mv src/main/com/example/controller/DocumentSimilarityDriver.java src/main/java/com/example/controller/
+```
+
+```bash
+git mv src/main/com/example/DocumentSimilarityMapper.java src/main/java/com/example/
+```
+
+```bash
+git mv src/main/com/example/DocumentSimilarityReducer.java src/main/java/com/example/
+```
+
+```bash
+mvn -q -DskipTests clean package
 ```
 
 ### 6. **Connect to Docker Container**
@@ -138,9 +164,13 @@ hadoop fs -mkdir -p /input/data
 ```
 
 Copy the input dataset to the HDFS folder:
-
+**Command for 3 data nodes:**
 ```bash
 hadoop fs -put ./input.txt /input/data
+```
+**Command for 1 data nodes:**
+```bash
+hadoop fs -put -f ./input1.txt /input/data
 ```
 
 ### 8. **Execute the MapReduce Job**
