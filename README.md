@@ -151,10 +151,15 @@ Run your MapReduce job using the following command: Here I got an error saying o
 hadoop jar /opt/hadoop-3.2.1/share/hadoop/mapreduce/DocumentSimilarity-0.0.1-SNAPSHOT.jar com.example.controller.Controller /input/data/input.txt /output1
 ```
 
-Corrected Command:
+**Corrected Command for 3 data nodes:**
 
 ```bash
 hadoop jar DocumentSimilarity-0.0.1-SNAPSHOT.jar com.example.controller.DocumentSimilarityDriver /input/data /output1
+```
+**Corrected Command for 1 data nodes:**
+
+```bash
+hadoop jar DocumentSimilarity-0.0.1-SNAPSHOT.jar com.example.controller.DocumentSimilarityDriver /input/data/input1.txt /output1_single
 ```
 
 ### 9. **View the Output**
